@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --bg-color: hsla(94, 46%, 57%, 1);
+    --font-one: hsla(0, 0%, 100%, 1);
+    --font-two: hsla(0, 0%, 40%, 1);
+    --font-three: hsla(0, 0%, 42%, 1);
+    --font-num: hsla(0, 0%, 15%, 1);
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-color);
+    min-height: 100vh;
+}
+
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 2rem;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 150px;
+    border-radius: 13px;
+    padding: 1rem 1.4rem 1rem 2rem;
+    border: 2px solid var(--font-one);
+
+}
+
+.logo img {
+    height: 100%;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--font-one);
+    border-radius: 10px;
+    width: 139px;
+    height: 128px;
+}
+
+.score-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-two);
+
+}
+
+.score-number {
+    font-size: 68px;
+    font-weight: 700;
+    color: var(--font-num);
+
+}
+
+.com-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--font-one);
+    border-radius: 10px;
+    width: 139px;
+    height: 128px;
+    margin-left: -208px;
+}
+
+.com-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-two);
+    margin-bottom: 5px;
+}
+
+.com-score-number {
+    font-size: 68px;
+    font-weight: 700;
+    color: var(--font-num);
+}
+
+.game {
+    position: relative;
+    display: grid;
+    grid-template-columns: 15rem 15rem;
+    grid-template-areas:
+     "stone scissors"
+     "paper paper";
+    place-items: center;
+    justify-content: center;
+    height: 30rem;
+    padding-top: 4rem;
+}
+.choice-btn {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+
+.choice {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+
+}
+
+
+.choice img {
+    width: 140px; 
+    height: 140px;
+}
+
+
+
+.choice-btn[data-choice="stone"] {
+    grid-area: stone;
+}
+
+
+.choice-btn[data-choice="scissors"] {
+    grid-area: scissors;
+}
+
+.choice-btn[data-choice="paper"] {
+    grid-area: paper;
+}
+
