@@ -2,93 +2,79 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnrules = document.querySelector('.rules-btn');
     const btnclose = document.querySelector('.close-btn');
     const rulemodel = document.querySelector('.rule-model');
-    const nextBtn = document.getElementsByClassName("next-btn")
-    const stone  = document.getElementsByClassName("stone")
-    const scissors  = document.getElementsByClassName("scissors")
-    const paper  = document.getElementsByClassName("paper")
+    const choicebuttons = document.querySelectorAll('.choice-btn');
+    const gamediv = document.querySelector('.game');
+    const resultsdiv = document.querySelector('.results');
+    const resultdivs = document.querySelectorAll('.results_result');
 
-    let userChoice;
+    const CHOICES = [
+        {
+            name: "paper",
+            beats: "rock"
+        },
+        {
+            name: "scissors",
+            beats: "paper"
+        },
+        {
+            name: "rock",
+            beats: "scissors"
+        },
+    ];
 
-    const gameControllers = document.getElementsByClassName("choice-btn")
+    choicebuttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const choicename = button.dataset.choice;
+            const choice = CHOICES.find(choice => choice.name === choicename);
+            choose(choice);
+        });
+    });
 
-    for (let index = 0; index < gameControllers.length; index++) {
-        
-        gameControllers[index].addEventListener("click", function gameControllersFN(event) {
-            nextBtn[0].style.display = "inline"
-        })
-
+    function choose(choice) {
+        const pcpick = pcchoose();
+        displayresults([choice, pcpick]);
     }
 
+    function pcchoose() {
+        const random = Math.floor(Math.random() * CHOICES.length);
+        return CHOICES[random];
+    }
 
-    stone[0].addEventListener("click", function stoneclickedFn(e) {
-        e.preventDefault
-        scissors[0].style.display ="none"
-        paper[0].style.display = "none"
-        userChoice = "stone"
-        pcChoices()
-
-
-        
-    })
-
-
-    paper[0].addEventListener("click", function stoneclickedFn(e) {
-        e.preventDefault
-        scissors[0].style.display ="none"
-        paper[0].style.display = "none"
-        userChoice = "paper"
-        pcChoices()
-
-
-        
-    })
- 
-
-
-
-    function pcChoices(params) {
-        /*
-         create either stone, paper or scissor using 
-         let number = Math.random * 4) 1 0r 2 or 3 
-
-         if( number == 1) 
-         1 => stone
-
-         button class="choice-btn" data-choice="stone">
-            <div class="choice stone">
-                <img src="./images/Group 4.png" alt="stone">
-            </div>
-        </button>
-
-        if(number == 2)
-        2=>
-        <button class="choice-btn" data-choice="scissors">
-            <div class="choice scissors">
-                <img src="./images/Group 2.png" alt="scissors">
-            </div>
-        </button>
+    function displayresults(results) {
+        let counter = 0;
+        const interval = setInterval(() => {
+            if (counter >= resultdivs.length) {
+                clearInterval(interval);
+                gamediv.classList.toggle('hidden');
+                resultsdiv.classList.toggle('hidden');
+                return;
     
-        if(number == 3)
-        3=>
-        <button class="choice-btn" data-choice="paper">
-            <div class="choice paper">
-                <img src="./images/Group 3.png" alt="paper">
-            </div>
-        </button>
+   }
 
- // example function (userchoice pcpciked )
+    function getImagePath(choiceName) {
+        const imgElements = document.querySelectorAll('.choice img');
+            for (let i = 0; i < imgElements.length; i++) {
+                const imgElement = imgElements[i];
+            if (imgElement.alt.toLowerCase().includes(choiceName.toLowerCase())) {
+                return imgElement.src;
+                }
+            }
+                return '';
+    }
 
-        if (stone > sciccors)
-        if(sciccors > paper)
-        if(paper > stone)
-
-       
-        
-        */
+            resultdivs[counter].innerHTML = `
+                <div class="choice ${results[counter].name}">
+                    <img src="${getImagePath(results[counter].name)}" alt="${results[counter].name}" />
+                </div>
+            `;
+            counter++;
+        }, 1000);
     }
 
 
 
+ 
+    
     btnrules.addEventListener('click', () => {
         rulemodel.style.display = 'block';
     });
@@ -96,7 +82,4 @@ document.addEventListener('DOMContentLoaded', () => {
     btnclose.addEventListener('click', () => {
         rulemodel.style.display = 'none';
     });
-
-
-
 });

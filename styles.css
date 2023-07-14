@@ -101,7 +101,7 @@ body {
     display: grid;
     grid-template-columns: 15rem 14rem;
     grid-template-areas:
-     "stone scissors"
+     "rock scissors"
      "paper paper";
     place-items: center;
     justify-content: center;
@@ -132,10 +132,10 @@ body {
 }
 
 
-
-.choice-btn[data-choice="stone"] {
-    grid-area: stone;
-}
+  
+  .choice-btn[data-choice="rock"] {
+    grid-area: rock;
+  }
 
 
 .choice-btn[data-choice="scissors"] {
@@ -146,11 +146,70 @@ body {
     grid-area: paper;
 }
 
+.results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    grid-template-areas:
+    "you-title pc-title"
+    "YOU-PICKED PC-PICKED";
+    max-width: 1000px;
+    margin: 0 auto;
+
+}
+
+.results_heading {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    padding: 4rem 0 8rem;
+    margin-bottom: 2rem;
+    color: var(--font-one);
+}
+
+.results_heading:first-of-type {
+    grid-area: you-title;
+    white-space: nowrap;
+}
+
+.results_heading:last-of-type {
+    grid-area: pc-title;
+    justify-self: end;
+    white-space: nowrap;
+}
+
+.you-picked-heading {
+    margin-left: -100px;
+}
+
+.pc-picked-heading {
+    margin-left: 390px;
+}
+
+
+.results_result:first-of-type {
+    grid-area: you-picked;
+    margin-left: -1101px;
+}
+
+.results_result:last-of-type {
+    grid-area: pc-picked;
+    margin-left: -110px;
+    justify-self: end;
+}
+
+.results_result {
+    min-width: 10rem;
+    min-height: 10rem;
+    background: var(--bg-color);
+    border-radius: 50%;
+}
+
+
 .line1 {
     position: relative;
     width: 95px;
-    top: -259px;
-    left: 108px;
+    top: -228px;
+    left: -109px;
     border: 15px;
     color: var(--line-color);
 
@@ -159,8 +218,8 @@ body {
 .line2 {
     position: relative;
     width: 935px;
-    top: -175px;
-    left: 400px;
+    top: -190px;
+    left: 620px;
     border: 15px;
     color: var(--line-color);
 }
@@ -168,8 +227,8 @@ body {
 .line3 {
     position: relative;
     width: 1062px;
-    top: -237px;
-    left: 547px;
+    top: -191px;
+    left: 332px;
     border: 15px;
     color: var(--line-color);
     border: 15px;
@@ -246,9 +305,11 @@ body {
     grid-area: pc-title;
 }
 
-.next-btn{
+.preload * {
+    transition: none;
+}
+
+.hidden {
     display: none;
-    color: brown;
-    background-color: aliceblue;
 }
 
