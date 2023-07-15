@@ -233,6 +233,30 @@ body {
     "you-picked result-winner pc-picked";
 }
 
+.winner .choice::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 0 30px rgb(46, 154, 37, 0.39), 0 0 0 65px rgba(29, 168, 43, 0.79), 0 0 0 90px rgba(46, 154, 37, 0.39);
+    animation: winner 1s ease forwards;
+  }
+  
+  
+  @keyframes winner {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+
 .results_text {
     position: absolute;
     font-size: 37px;

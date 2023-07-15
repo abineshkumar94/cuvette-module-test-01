@@ -95,8 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (userwins) {
         resulttext[0].innerText = "YOU WIN";
+        resultdivs[0].classList.toggle('winner')
       } else if (pcwins) {
         resulttext[0].innerText = "YOU LOST";
+        resultdivs[1].classList.toggle('winner')
       } else {
         resulttext[0].innerText = "TIE UP";
       }
