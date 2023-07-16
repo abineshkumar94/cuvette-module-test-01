@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/styles.css" rel="stylesheet" />
     <title>NextPage</title>
 </head>
 <body>
     
+    <div class="star">
+        <img src="./images/star.png" alt="star-image" />
+    </div>
+    <div class="trophy">
+        <img src="./images/trophy.png" alt="trophy-image" style="width: 180px; height: auto;"/>
+    </div>
+
+    <h1 class="hay">HURRAY!!</h1>
+    <h1 class="ywtg">YOU WON THE GAME</h1>
+
+    <button class="play2">PLAY AGAIN</button>
+
+    <script>
+        const playAgainButton = document.querySelector('.play2');
+        playAgainButton.addEventListener('click', () => {
+            window.location.href = './index.html';
+        });
+    </script>
 </body>
 </html>
+

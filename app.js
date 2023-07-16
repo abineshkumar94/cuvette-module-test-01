@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const game = document.querySelector('.game');
   const scoreNumber = document.querySelector('.score-number');
   const comScoreNumber = document.querySelector('.com-score-number');
+  const nextButton = document.querySelector('.next-btn');
+  const nextagainbtn = document.querySelector('.play2');
   let score = 0;
 
   const CHOICES = [
@@ -97,58 +99,79 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       const userwins = iswinner(results);
       const pcwins = iswinner(results.reverse());
-  
+
       if (userwins) {
         resulttext[0].innerText = 'YOU WIN';
-        resultdivs[0].classList.toggle('winner');
-        score++; // Increment the user's score
+        resultdivs[0].classList.add('winner'); 
+        resultdivs[1].classList.remove('winner'); 
+        score++;
+        showNextButton();
       } else if (pcwins) {
         resulttext[0].innerText = 'YOU LOST';
-        resultdivs[1].classList.toggle('winner');
-        // Increment the PC's score
-        // Remove the score increment for the user (score++;)
+        resultdivs[0].classList.remove('winner'); 
+        resultdivs[1].classList.add('winner'); 
+        hideNextButton();
       } else {
         resulttext[0].innerText = 'TIE UP';
-        // It's a tie, no need to update the score
+        resultdivs[0].classList.remove('winner'); 
+        resultdivs[1].classList.remove('winner'); 
+        hideNextButton();
       }
-  
-      // Update the scores in the DOM
-      scoreNumber.textContent = userwins ? score : score - 1; // Update only the user's score
-      comScoreNumber.textContent = pcwins ? score : score - 1; // Update only the PC's score
+
+      scoreNumber.textContent = userwins ? score : score - 1;
+      comScoreNumber.textContent = pcwins ? score : score - 1;
     }, 1000);
-  
+    
     resultwinner.classList.toggle('hidden');
     resultsdiv.classList.toggle('show-winner');
   }
-  
 
   function iswinner(results) {
     return results[0].beats == results[1].name;
   }
 
+  function showNextButton() {
+    nextButton.style.display = 'block';
+  }
+
+  function hideNextButton() {
+    nextButton.style.display = 'none';
+  }
+
+  hideNextButton();
+
   playagainbtn.addEventListener('click', () => {
-    // Hide the results
     resultsdiv.classList.add('hidden');
     resultwinner.classList.add('hidden');
-    // Show the choice buttons
+    
     choicebuttons.forEach(button => {
       button.style.display = 'block';
     });
-    // Show the lines
+    
     lines.forEach(line => {
       line.style.display = 'block';
     });
+
+    hideNextButton(); 
   });
-  
 
   btnrules.addEventListener('click', () => {
     rulemodel.style.display = 'block';
+    hideNextButton();
   });
 
   btnclose.addEventListener('click', () => {
     rulemodel.style.display = 'none';
+    showNextButton();
   });
+
+    nextagainbtn.addEventListener('click', () => {
+    location.reload();
+  });
+  
 });
+
+
 
 
 
